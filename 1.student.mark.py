@@ -12,11 +12,6 @@ def loop_positive_integer(agrs):
         except ValueError:
             print("Error: value must be an integer. Please try again.")
 
-#Input number of student or course:
-def number_of_items(args):
-    print("Enter the number of " + args + " in this class: ")
-    return loop_positive_integer("")
-
 #Add extra student or course:
 def add_items(args, info, num):
     number_of_variables = int(input("Enter the number of "+ args +" you want to add: "))     
@@ -126,68 +121,65 @@ def main():
     number_of_students = 0
     number_of_courses = 0
     student_infos = []
-    coure_infos = []
+    course_infos = []
     mark = []
 
     while True:
-        print("""
-        0. Exit
-        1. Input number of students.
-        2. Input number of courses.
-        3. Add extra student(s).     
-        4. Add extra course(s).
-        5. Delete specific student.
-        6. Delete specific course.
-        7. Input info of students.
-        8. Input info of courses.
-        9. Input marks.
-        10. List students.
-        11. List courses.
-        12. List all information.
-        """)
+        try:
+            print("""
+            0. Exit
+            1. Input student(s).     
+            2. Input course(s).
+            3. Delete specific student.
+            4. Delete specific course.
+            5. Input info of students.
+            6. Input info of courses.
+            7. Input marks.
+            8. List students.
+            9. List courses.
+            10. List marks.
+            """)
 
-        option = int(input("Your choice: "))
-        if option == 0:
-            break
-        
-        elif option == 1:
-            number_of_students = number_of_items("students")
+            option = int(input("Your choice: "))
+            if option == 0:
+                break
 
-        elif option == 2:
-            number_of_courses = number_of_items("courses")
+            elif option == 1:
+                add_items("student", student_infos, number_of_students)
 
-        elif option == 3:
-            add_items("student", student_infos, number_of_students)
+            elif option == 2:
+                add_items("course", course_infos, number_of_courses)
 
-        elif option == 4:
-            add_items("course", coure_infos, number_of_courses)
+            elif option == 3:
+                delete_item("student", student_infos)
 
-        elif option == 5:
-            delete_item("student", student_infos)
+            elif option == 4:
+                delete_item("course", course_infos)
 
-        elif option == 6:
-            delete_item("course", coure_infos)
+            elif option == 5:
+                student_infos = input_info("student", number_of_students)
 
-        elif option == 7:
-            student_infos = input_info("student", number_of_students)
+            elif option == 6:
+                course_infos = input_info("course", number_of_courses)
 
-        elif option == 8:
-            coure_infos = input_info("course", number_of_courses)
+            elif option == 7:
+                input_mark(student_infos, course_infos, mark)
 
-        elif option == 9:
-            input_mark(student_infos, coure_infos, mark)
+            elif option == 8:
+                list_items("student", student_infos)
 
-        elif option == 10:
-            list_items("student", student_infos, number_of_students)
+            elif option == 9:
+                list_items("course", course_infos)
 
-        elif option == 11:
-            list_items("course", coure_infos, number_of_courses)
+            elif option == 10:
+                list_marks(mark, student_infos, course_infos)
 
-        elif option == 12:
-            list_marks(mark, student_infos, coure_infos)
+            else:
+                print("Invalid input. Please try again!")
 
-        else:
-            print("Invalid input. Please try again!")
+        except ValueError:
+                            print("Error: Invalid input format.")
+
 
 if __name__ == "__main__":
     try:
