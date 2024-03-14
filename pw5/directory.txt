@@ -1,0 +1,10 @@
+pw5/
+├── __init__.py
+├── domains/
+│   ├── __init__.py
+│   ├── student.py
+│   ├── course.py
+│   └── mark.py
+├── input.py
+├── output.py
+└── main.py
